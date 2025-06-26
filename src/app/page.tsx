@@ -6,7 +6,8 @@ export default function Home() {
   const [passengerCount, setPassengerCount] = useState<number>(0);
  
    useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8000/ws/passenger-count");
+    const socket = new WebSocket(`ws://${window.location.hostname}:8000/ws/passenger-count`);
+
 
     socket.onmessage = (event) => {
       try {
