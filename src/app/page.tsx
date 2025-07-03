@@ -1,7 +1,8 @@
 'use client';
-import { TrendingUp, Users, HardDriveUpload, CameraOff } from "lucide-react";
+import { TrendingUp, Users, HardDriveUpload } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { useEffect, useState } from "react";
+import { CameraFeed } from "@/components/CameraFeed";
 export default function Home() {
   const [passengerCount, setPassengerCount] = useState<number>(0);
  
@@ -73,10 +74,9 @@ export default function Home() {
       <div className="h-full bg-slate-400 p-4 rounded-2xl flex flex-col">
         <h1 className="text-xl font-bold text-slate-950 p-2">Cámara en Tiempo Real</h1>
 
-        {/* Contenedor que ocupa el alto restante */}
+        {/* Contenedor para ver el video */}
         <div className="flex-1 bg-slate-900 rounded-xl flex items-center justify-center">
-          <CameraOff className="h-16 w-16 text-white" />
-          <p className="text-white text-lg ml-4">Cámara no disponible</p>
+         <CameraFeed/>
         </div>
       </div>
     </div>

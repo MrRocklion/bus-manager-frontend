@@ -1,1 +1,4 @@
-pm2 start npm --name "bus-manager-frontend" -- start
+pm2 list
+pm2 start npm --name "bus-manager-frontend" -- run start
+pm2 save
+pm2 startup systemd
