@@ -3,11 +3,12 @@ import { TrendingUp, Users, HardDriveUpload } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { useEffect, useState } from "react";
 import { CameraFeed } from "@/components/CameraFeed";
+import Link from "next/link";
 export default function Home() {
   const [passengerCount, setPassengerCount] = useState<number>(0);
- 
-   useEffect(() => {
-    const socket = new WebSocket(`ws://${window.location.hostname}:8000/ws/passenger-count`);
+
+  useEffect(() => {
+    const socket = new WebSocket(`ws://192.168.20.245:8000/ws/passenger-count`);
 
 
     socket.onmessage = (event) => {
@@ -34,7 +35,7 @@ export default function Home() {
 
     return () => socket.close();
   }, []);
-   const cards = [
+  const cards = [
     {
       title: "Validaciones",
       value: "0",
@@ -70,34 +71,34 @@ export default function Home() {
             </div>
           ))}
           <div></div>
-        <div className="col-span-1 sm:col-span-2 lg:col-span-3 row-span-4 p-5">
-      <div className="h-full bg-slate-400 p-4 rounded-2xl flex flex-col">
-        <h1 className="text-xl font-bold text-slate-950 p-2">Cámara en Tiempo Real</h1>
 
-        {/* Contenedor para ver el video */}
-        <div className="flex-1 bg-slate-900 rounded-xl flex items-center justify-center">
-         <CameraFeed/>
-        </div>
-      </div>
-    </div>
+          <div className="col-span-1 sm:col-span-2 lg:col-span-3 row-span-4 p-5">
+            <div className="h-full bg-slate-400 p-3 rounded-2xl flex flex-col">
+              <h1 className="text-xl font-bold text-slate-950 p-2">Cámara en Tiempo Real</h1>
+              <div className="flex-1 bg-slate-900 rounded-xl flex items-center justify-center">
+                <CameraFeed />
+              </div>
+            </div>
+          </div>
+
           <div className="row-span-4 ">
             <div className="flex flex-col space-y-4 h-100 w-full max-w-xs mx-auto mt-10 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 p-6">
               <h2 className="text-lg font-semibold text-gray-700 mb-4">Opciones</h2>
-              <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 shadow">
-                Validaciones
-              </button>
-
-               <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 shadow">
+              <Link href="/counters" className="text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 shadow">
                 Conteos
-              </button>
+              </Link>
 
-            <button className="bg-emerald-500 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition duration-200 shadow">
-                Reportes
-              </button>
+              <Link href="/transactions" className="text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 shadow">
+                Transacciones
+              </Link>
 
-              <button className="bg-slate-800 text-white py-2 px-4 rounded-lg hover:bg-slate-950 transition duration-200 shadow">
+              <Link href="/analiticas" className="text-center bg-emerald-500 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition duration-200 shadow">
+                Analiticas
+              </Link>
+
+              <Link href="/ajustes" className="text-center bg-slate-800 text-white py-2 px-4 rounded-lg hover:bg-slate-950 transition duration-200 shadow">
                 Ajustes
-              </button>
+              </Link>
             </div>
           </div>
         </div>
