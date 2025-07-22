@@ -2,28 +2,30 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react"
-import { TransactionsTableProps } from "@/types/transactions";
+import { CounterTableProps } from "@/types/transactions";
 import { getCardTypeBadge } from "./card-type-badge";
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-export default function TransactionsTable({ transactions }: TransactionsTableProps) {
+
+
+export default function CountersTable({ counters }: CounterTableProps) {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [itemsPerPage, setItemsPerPage] = useState(5)
 
-	const totalPages = Math.ceil(transactions.length / itemsPerPage)
+	const totalPages = Math.ceil(counters.length / itemsPerPage)
 	const startIndex = (currentPage - 1) * itemsPerPage
 	const endIndex = startIndex + itemsPerPage
-	const currentData = transactions.slice(startIndex, endIndex)
+	const currentData = counters.slice(startIndex, endIndex)
 
-	const getUploadStatusBadge = (status: boolean) => {
+	const getSpecialStatus = (status: boolean) => {
 		return status ? (
-			<Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100">
-				Cargado
+			<Badge variant="default" className="bg-blue-100 text-blue-800 hover:bg-blue-100">
+				Normal
 			</Badge>
 		) : (
-			<Badge variant="secondary" className="bg-red-100 text-red-800 hover:bg-red-100">
-				Faltante
+			<Badge variant="secondary" className="bg-green-100 text-green-800 hover:bg-green-100">
+				Normal
 			</Badge>
 		)
 	}
@@ -44,25 +46,17 @@ export default function TransactionsTable({ transactions }: TransactionsTablePro
 				<Table>
 					<TableHeader>
 						<TableRow className="bg-gray-50">
-							<TableHead className="font-semibold">Codigo</TableHead>
-							<TableHead className="font-semibold">Tipo</TableHead>
+							<TableHead className="font-semibold">Id</TableHead>
 							<TableHead className="font-semibold">Fecha</TableHead>
-							<TableHead className="font-semibold">Hora</TableHead>
-							<TableHead className="font-semibold">Debito</TableHead>
-							<TableHead className="font-semibold">Status</TableHead>
-							<TableHead className="font-semibold">Hora Servidor</TableHead>
+							<TableHead className="font-semibold">Tipo</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{transactions.map((transaction) => (
-							<TableRow key={transaction.id} className="hover:bg-gray-50">
-								<TableCell className="font-medium">{transaction.card_code}</TableCell>
-								<TableCell>{getCardTypeBadge(transaction.card_type)}</TableCell>
-								<TableCell className="text-gray-600">{transaction.date}</TableCell>
-								<TableCell>{transaction.time}</TableCell>
-								<TableCell>{transaction.amount}</TableCell>
-								<TableCell className="text-gray-600">{getUploadStatusBadge(transaction.uploaded)}</TableCell>
-								<TableCell className="text-gray-600">{transaction.timestamp}</TableCell>
+						{counters.map((counter) => (
+							<TableRow key={counter.id} className="hover:bg-gray-50">
+								<TableCell className="font-medium">{counter.id}</TableCell>
+								<TableCell>{counter.datetime}</TableCell>
+								<TableCell className="text-gray-600">{getSpecialStatus(counter.special)}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
@@ -128,7 +122,7 @@ export default function TransactionsTable({ transactions }: TransactionsTablePro
 					</div>
 				</div>
 			</div>
-			<div className="mt-4 text-sm text-gray-500">Mostrando {transactions.length} Transacciones</div>
+			<div className="mt-4 text-sm text-gray-500">Mostrando {counters.length} Conteos</div>
 		</>
 
 

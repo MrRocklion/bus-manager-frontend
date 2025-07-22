@@ -11,9 +11,18 @@ export interface Transaction {
     uploaded: boolean;
 }
 
+export interface Counter {
+  id: number;
+  datetime: string;
+  special: boolean;
+}
 
 export interface TransactionsTableProps {
   transactions: Transaction[]
+}
+
+export interface CounterTableProps {
+  counters: Counter[]
 }
 
 export interface FetchTransactionsOpts {
