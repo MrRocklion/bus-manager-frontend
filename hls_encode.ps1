@@ -1,0 +1,1 @@
+ffmpeg -rtsp_transport tcp -i "rtsp://admin:ctucl2021@@192.168.10.35:554/cam/realmonitor?channel=1&subtype=0" -c:v copy -c:a aac -f hls -hls_time 2 -hls_list_size 3 -hls_flags delete_segments+temp_file -hls_segment_filename "public\hls\segment_%03d.ts" "public\hls\stream.m3u8"

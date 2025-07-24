@@ -89,7 +89,7 @@ export default function Home() {
 							Conteos
 						</Link>
 
-						<Link href="/ajustes" className="text-center bg-slate-800 text-white py-2 px-4 rounded-lg hover:bg-slate-950 transition duration-200 shadow">
+						<Link href="/settings" className="text-center bg-slate-800 text-white py-2 px-4 rounded-lg hover:bg-slate-950 transition duration-200 shadow">
 							Ajustes
 						</Link>
 					</div>
